@@ -1,26 +1,76 @@
 package com.javaguru.shoppinglist.service;
 
-import com.javaguru.shoppinglist.database.Product;
+import com.javaguru.shoppinglist.domain.Product;
+import com.javaguru.shoppinglist.repository.ProductInMemoryRepository;
+import com.javaguru.shoppinglist.repository.ProductRepository;
+import com.javaguru.shoppinglist.service.validation.ProductUniqueNameValidationRule;
+import com.javaguru.shoppinglist.service.validation.ProductValidationService;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.Map;
 
-public interface ProductService<T> {
+public class ProductService implements ProductServiceable<Product> {
 
-    public void addProduct(T item) throws ProductValidationException;
+    private ProductRepository<Product> productRepository;
+    private ProductValidationService productValidationService = new ProductValidationService();
+    private ProductUniqueNameValidationRule productUniqueNameValidationRule = new ProductUniqueNameValidationRule();
 
-    public void deleteProduct(long ID);
+    public ProductService(ProductRepository<Product> productRepository){
+        this.productRepository = productRepository;
+    }
 
-    public void editProductName(long ID, String name);
+    @Override
+    public Product saveProduct(Product product) {
+        productUniqueNameValidationRule.validate(product, productRepository);
+        productValidationService.validate(product);
+        if (!productValidationService.validate(product).isEmpty()) {
+            throw new IllegalArgumentException("Incorrect input:" + '\n' + productValidationService.validate(product));
+        } else {
+            Product createdProduct = productRepository.save(product);
+            return createdProduct;
+        }
+    }
 
-    public void editProductPrice(long ID, BigDecimal price);
 
-    public void editProductDiscount(long ID, BigDecimal discount);
+    @Override
+    public void deleteProduct(long id) {
+        if (productRepository.findProductById(id) != null) {
+            productRepository.remove(id);
+        }
+        else {
+            throw new IllegalArgumentException("Product with ID: " + id + " is not found");
+        }
+    }
 
-    public void editProductDescription(long ID, String description);
+    @Override
+    public void editProductName(long id, String name) {
+        productRepository.editName(id, name);
+    }
 
-    public Product findProductByID(long ID);
+    @Override
+    public void editProductPrice(long id, BigDecimal price) {
+        productRepository.editPrice(id, price);
+    }
 
-    public void showAllProducts();
+    @Override
+    public void editProductDiscount(long id, BigDecimal discount) {
+        productRepository.editDiscount(id, discount);
+    }
+
+    @Override
+    public void editProductDescription(long id, String description) {
+        productRepository.editDescription(id, description);
+    }
+
+    @Override
+    public Product findProductByID(long id) {
+        return productRepository.findProductById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Product with ID: " + id + " is not found"));
+    }
+
+    @Override
+    public void showAllProducts() {
+        productRepository.findAllProducts().entrySet()
+                .stream()
+                .forEach(System.out::println);
+    }
 }

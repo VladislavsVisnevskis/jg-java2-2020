@@ -1,10 +1,10 @@
-package com.javaguru.shoppinglist.service;
+package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.database.ProductCategory;
+import com.javaguru.shoppinglist.domain.ProductCategory;
 
 public class ProductChoiceMenu {
 
-    public static void showProductCategories(){
+    public void showProductCategories(){
         System.out.println("Enter product category: ");
         System.out.println("1. Vegetables");
         System.out.println("2. Fruits");
@@ -18,7 +18,7 @@ public class ProductChoiceMenu {
         System.out.println("10. Other");
     }
 
-    public static ProductCategory productCategoryChoice(int choice){
+    public ProductCategory productCategoryChoice(int choice){
         ProductCategory category;
         switch (choice) {
             case 1:

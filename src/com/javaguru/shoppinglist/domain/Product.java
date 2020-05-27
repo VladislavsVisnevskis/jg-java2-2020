@@ -1,4 +1,4 @@
-package com.javaguru.shoppinglist.database;
+package com.javaguru.shoppinglist.domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -9,7 +9,6 @@ public class Product {
     private String name;
     private BigDecimal price;
     private BigDecimal discount;
-    private BigDecimal actualPrice; //if there is a discount, there should be actual price as well
     private ProductCategory category;
     private String description;
 
@@ -43,14 +42,6 @@ public class Product {
 
     public void setDiscount(BigDecimal discount) {
         this.discount = discount;
-    }
-
-    public void setActualPrice(){
-        this.actualPrice = price.multiply((BigDecimal.valueOf(100).subtract(discount)).divide(BigDecimal.valueOf(100)));
-    }
-
-    public BigDecimal getActualPrice(){
-        return actualPrice;
     }
 
     public ProductCategory getCategory() {
@@ -94,7 +85,6 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", discount=" + discount +
-                ", actualPrice=" + actualPrice +
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 '}';

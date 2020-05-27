@@ -1,10 +1,12 @@
-package com.javaguru.shoppinglist.service;
+package com.javaguru.shoppinglist.console;
+
+import com.javaguru.shoppinglist.service.ProductServiceable;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class EditMenu {
-    public static void showEditMenu(ProductService productService){
+    public void showEditMenu(ProductServiceable productService){
         Scanner scannerTwo = new Scanner(System.in);
         System.out.println("1. Edit name");
         System.out.println("2. Edit price");
