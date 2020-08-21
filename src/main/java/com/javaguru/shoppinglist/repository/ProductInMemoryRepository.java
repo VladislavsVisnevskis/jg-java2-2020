@@ -1,12 +1,17 @@
 package com.javaguru.shoppinglist.repository;
 
 import com.javaguru.shoppinglist.domain.ProductEntity;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Repository
+@Profile("inmemory")
 public class ProductInMemoryRepository implements ProductRepository<ProductEntity>{
 
     private Map<Long, ProductEntity> repository = new HashMap<>();
@@ -25,23 +30,8 @@ public class ProductInMemoryRepository implements ProductRepository<ProductEntit
     }
 
     @Override
-    public void editName(long id, String name) {
-        repository.get(id).setName(name);
-    }
-
-    @Override
-    public void editPrice(long id, BigDecimal price) {
-        repository.get(id).setPrice(price);
-    }
-
-    @Override
-    public void editDiscount(long id, BigDecimal discount) {
-        repository.get(id).setDiscount(discount);
-    }
-
-    @Override
-    public void editDescription(long id, String description) {
-        repository.get(id).setDescription(description);
+    public void editProduct(ProductEntity productEntity) {
+        repository.put(productEntity.getId(), productEntity);
     }
 
     @Override
@@ -50,7 +40,7 @@ public class ProductInMemoryRepository implements ProductRepository<ProductEntit
     }
 
     @Override
-    public Map<Long, ProductEntity> findAllProducts() {
-        return repository;
+    public List<ProductEntity> findAllProducts() {
+        return (List<ProductEntity>) repository.values();
     }
 }

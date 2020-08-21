@@ -1,7 +1,9 @@
 package com.javaguru.shoppinglist.console;
 
 import com.javaguru.shoppinglist.domain.ProductCategory;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ProductChoiceMenu {
 
     public void showProductCategories(){
@@ -12,7 +14,7 @@ public class ProductChoiceMenu {
     }
 
     public ProductCategory productCategoryChoice(int choice){
-        ProductCategory category = switch (choice) {
+        return switch (choice) {
             case 1 -> ProductCategory.VEGETABLES;
             case 2 -> ProductCategory.FRUITS;
             case 3 -> ProductCategory.MEAT;
@@ -28,6 +30,5 @@ public class ProductChoiceMenu {
             case 13 -> ProductCategory.CEREALS;
             default -> ProductCategory.OTHER;
         };
-        return category;
     }
 }

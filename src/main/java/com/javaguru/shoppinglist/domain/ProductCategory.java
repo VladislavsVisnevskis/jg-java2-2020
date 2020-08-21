@@ -11,7 +11,7 @@ public enum ProductCategory {
     ALCOHOL("Alcohol"),
     MILK("Milk"),
     SAUCES("Sauces"),
-    HOUSE("House stuff"),
+    HOUSE("House"),
     FROZEN("Frozen"),
     CEREALS("Cereals"),
     OTHER("Other");

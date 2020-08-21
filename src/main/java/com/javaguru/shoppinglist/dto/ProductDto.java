@@ -3,6 +3,7 @@ package com.javaguru.shoppinglist.dto;
 import com.javaguru.shoppinglist.domain.ProductCategory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
 public class ProductDto {
@@ -95,7 +96,7 @@ public class ProductDto {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", actualPrice=" + actualPrice +
+                ", actualPrice=" + actualPrice.setScale(2, RoundingMode.CEILING) +
                 ", discount=" + discount + "%" +
                 ", category=" + category +
                 ", description='" + description + '\'' +

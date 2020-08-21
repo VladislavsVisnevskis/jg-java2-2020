@@ -10,13 +10,7 @@ public interface ProductServiceable {
 
     public void deleteProduct(long id);
 
-    public void editProductName(long id, String name);
-
-    public void editProductPrice(long id, BigDecimal price);
-
-    public void editProductDiscount(long id, BigDecimal discount);
-
-    public void editProductDescription(long id, String description);
+    public void editProduct(long id, String name, BigDecimal price, BigDecimal discount, String description);
 
     public ProductDto findProductByID(long id);
 
