@@ -1,6 +1,7 @@
 package com.javaguru.shoppinglist.repository;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -10,15 +11,9 @@ public interface ProductRepository<Product> {
 
     void remove(long id);
 
-    void editName(long id, String name);
-
-    void editPrice(long id, BigDecimal price);
-
-    void editDiscount(long id, BigDecimal discount);
-
-    void editDescription(long id, String description);
+    void editProduct(Product product);
 
     Optional<Product> findProductById(long id);
 
-    Map<Long, Product> findAllProducts();
+    List<Product> findAllProducts();
 }

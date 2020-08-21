@@ -2,9 +2,12 @@ package com.javaguru.shoppinglist.mapper;
 
 import com.javaguru.shoppinglist.domain.ProductEntity;
 import com.javaguru.shoppinglist.dto.ProductDto;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
+@Component
 public class ProductMapper {
 
     public ProductDto toDto(ProductEntity entity){
@@ -21,7 +24,7 @@ public class ProductMapper {
 
     public ProductEntity toEntity(ProductDto dto){
         ProductEntity entity = new ProductEntity();
-        //entity.setId(dto.getId());
+        entity.setId(dto.getId());
         entity.setName(dto.getName());
         entity.setPrice(dto.getPrice());
         entity.setDiscount(dto.getDiscount());
