@@ -1,6 +1,5 @@
 package com.javaguru.shoppinglist.console;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

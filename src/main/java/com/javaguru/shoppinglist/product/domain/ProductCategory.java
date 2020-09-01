@@ -1,4 +1,4 @@
-package com.javaguru.shoppinglist.domain;
+package com.javaguru.shoppinglist.product.domain;
 
 public enum ProductCategory {
     VEGETABLES ("Vegetables"),

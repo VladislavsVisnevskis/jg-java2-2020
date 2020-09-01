@@ -1,7 +1,7 @@
-package com.javaguru.shoppinglist.mapper;
+package com.javaguru.shoppinglist.product.mapper;
 
-import com.javaguru.shoppinglist.domain.ProductCategory;
-import com.javaguru.shoppinglist.domain.ProductEntity;
+import com.javaguru.shoppinglist.product.domain.ProductCategory;
+import com.javaguru.shoppinglist.product.domain.ProductEntity;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -1,20 +1,45 @@
-package com.javaguru.shoppinglist.dto;
+package com.javaguru.shoppinglist.product.domain;
 
-import com.javaguru.shoppinglist.domain.ProductCategory;
+import com.javaguru.shoppinglist.shoppingcart.domain.ShoppingCartEntity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
+import java.util.Set;
 
-public class ProductDto {
+@Entity
+@Table(name = "product")
+public class ProductEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+    @Column(name = "name", unique = true)
     private String name;
+    @Column(name = "price")
     private BigDecimal price;
+    @Column(name = "discount")
     private BigDecimal discount;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category", columnDefinition="enum")
     private ProductCategory category;
+    @Column(name = "description")
     private String description;
-    private BigDecimal actualPrice;
+    @ManyToMany(mappedBy = "productSet", fetch = FetchType.EAGER)
+    private Set<ShoppingCartEntity> shoppingCartSet;
+
+    public Set<ShoppingCartEntity> getShoppingCartSet() {
+        return shoppingCartSet;
+    }
+
+    public void setShoppingCartSet(Set<ShoppingCartEntity> shoppingCartSet) {
+        this.shoppingCartSet = shoppingCartSet;
+    }
+
+    public void addShoppingCartToProduct(ShoppingCartEntity shoppingCartEntity){
+        shoppingCartSet.add(shoppingCartEntity);
+    }
 
     public Long getId() {
         return id;
@@ -64,42 +89,34 @@ public class ProductDto {
         this.description = description;
     }
 
-    public BigDecimal getActualPrice() {
-        return actualPrice;
-    }
-
-    public void setActualPrice(BigDecimal actualPrice) {
-        this.actualPrice = actualPrice;
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", discount=" + discount +
+                ", category=" + category +
+                ", description='" + description + '\'' +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProductDto)) return false;
-        ProductDto that = (ProductDto) o;
+        if (!(o instanceof ProductEntity)) return false;
+        ProductEntity that = (ProductEntity) o;
         return Objects.equals(getId(), that.getId()) &&
                 Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getPrice(), that.getPrice()) &&
                 Objects.equals(getDiscount(), that.getDiscount()) &&
                 getCategory() == that.getCategory() &&
-                Objects.equals(getDescription(), that.getDescription());
+                Objects.equals(getDescription(), that.getDescription()) &&
+                Objects.equals(getShoppingCartSet(), that.getShoppingCartSet());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getPrice(), getDiscount(), getCategory(), getDescription());
-    }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", actualPrice=" + actualPrice.setScale(2, RoundingMode.CEILING) +
-                ", discount=" + discount + "%" +
-                ", category=" + category +
-                ", description='" + description + '\'' +
-                '}';
     }
 }

@@ -1,11 +1,12 @@
 package com.javaguru.shoppinglist.service;
 
-import com.javaguru.shoppinglist.domain.ProductCategory;
-import com.javaguru.shoppinglist.domain.ProductEntity;
-import com.javaguru.shoppinglist.dto.ProductDto;
-import com.javaguru.shoppinglist.mapper.ProductMapper;
-import com.javaguru.shoppinglist.repository.ProductRepository;
-import com.javaguru.shoppinglist.service.validation.ProductValidationService;
+import com.javaguru.shoppinglist.product.domain.ProductCategory;
+import com.javaguru.shoppinglist.product.domain.ProductEntity;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
+import com.javaguru.shoppinglist.product.mapper.ProductMapper;
+import com.javaguru.shoppinglist.product.repository.ProductRepository;
+import com.javaguru.shoppinglist.product.service.ProductService;
+import com.javaguru.shoppinglist.product.service.validation.ProductValidationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ProductServiceTest{
+public class ProductServiceTest {
 
     @Mock
     private ProductRepository repository;
@@ -35,7 +36,7 @@ public class ProductServiceTest{
     private ProductService victim;
 
     @Test
-    public void shouldSaveProduct(){
+    public void shouldSaveProduct() {
         when(repository.save(any())).thenReturn(entity());
         when(mapper.toDto((entity()))).thenReturn(dto());
 
@@ -45,10 +46,10 @@ public class ProductServiceTest{
     }
 
     @Test
-    public void shouldFindProduct(){
+    public void shouldFindProduct() {
         Mockito.<Optional<ProductEntity>>when(repository.findProductById(2L)).thenReturn((Optional.of(entity())));
         when(mapper.toDto((entity()))).thenReturn(dto());
-        
+
         ProductDto dto = victim.findProductByID(2L);
         assertEquals(dto, dto());
     }
@@ -57,12 +58,12 @@ public class ProductServiceTest{
     public void shouldDeleteProduct() {
         Optional<ProductEntity> optionalEntity = Optional.of(entity());
         Mockito.when(repository.findProductById(2L)).thenReturn(optionalEntity);
-        
+
         victim.deleteProduct(entity().getId());
         Mockito.verify(repository, times(1)).remove(entity().getId());
     }
 
-    private ProductDto dto(){
+    private ProductDto dto() {
         ProductDto productDto = new ProductDto();
         productDto.setId(1L);
         productDto.setName("DTO_NAME");

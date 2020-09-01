@@ -1,11 +1,9 @@
-package com.javaguru.shoppinglist.service.validation;
+package com.javaguru.shoppinglist.product.service.validation;
 
-import com.javaguru.shoppinglist.domain.ProductEntity;
-import com.javaguru.shoppinglist.dto.ProductDto;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 

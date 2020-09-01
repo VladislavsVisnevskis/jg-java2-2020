@@ -1,9 +1,12 @@
-package com.javaguru.shoppinglist.domain;
+package com.javaguru.shoppinglist.product.dto;
+
+import com.javaguru.shoppinglist.product.domain.ProductCategory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Objects;
 
-public class ProductEntity {
+public class ProductDto {
 
     private Long id;
     private String name;
@@ -11,6 +14,7 @@ public class ProductEntity {
     private BigDecimal discount;
     private ProductCategory category;
     private String description;
+    private BigDecimal actualPrice;
 
     public Long getId() {
         return id;
@@ -60,17 +64,25 @@ public class ProductEntity {
         this.description = description;
     }
 
+    public BigDecimal getActualPrice() {
+        return actualPrice;
+    }
+
+    public void setActualPrice(BigDecimal actualPrice) {
+        this.actualPrice = actualPrice;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ProductEntity)) return false;
-        ProductEntity productEntity = (ProductEntity) o;
-        return getId().equals(productEntity.getId()) &&
-                getName().equals(productEntity.getName()) &&
-                getPrice().equals(productEntity.getPrice()) &&
-                getDiscount().equals(productEntity.getDiscount()) &&
-                getCategory() == productEntity.getCategory() &&
-                getDescription().equals(productEntity.getDescription());
+        if (!(o instanceof ProductDto)) return false;
+        ProductDto that = (ProductDto) o;
+        return Objects.equals(getId(), that.getId()) &&
+                Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getPrice(), that.getPrice()) &&
+                Objects.equals(getDiscount(), that.getDiscount()) &&
+                getCategory() == that.getCategory() &&
+                Objects.equals(getDescription(), that.getDescription());
     }
 
     @Override
@@ -84,7 +96,8 @@ public class ProductEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", price=" + price +
-                ", discount=" + discount +
+                ", actualPrice=" + actualPrice.setScale(2, RoundingMode.CEILING) +
+                ", discount=" + discount + "%" +
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 '}';

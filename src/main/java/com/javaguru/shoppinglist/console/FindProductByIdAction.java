@@ -1,6 +1,6 @@
 package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.product.service.ProductService;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class FindProductByIdAction implements MenuAction {
     @Override
     public void execute() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter product id: ");
+        System.out.println("Enter product ID: ");
         try {
             long id = scanner.nextLong();
             System.out.println(productService.findProductByID(id));

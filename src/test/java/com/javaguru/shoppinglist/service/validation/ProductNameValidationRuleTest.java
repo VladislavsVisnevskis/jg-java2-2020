@@ -1,6 +1,8 @@
 package com.javaguru.shoppinglist.service.validation;
 
-import com.javaguru.shoppinglist.dto.ProductDto;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
+import com.javaguru.shoppinglist.product.service.validation.ProductNameValidationRule;
+import com.javaguru.shoppinglist.product.service.validation.ProductValidationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

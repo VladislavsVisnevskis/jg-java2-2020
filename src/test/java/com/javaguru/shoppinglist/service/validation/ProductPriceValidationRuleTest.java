@@ -1,13 +1,13 @@
 package com.javaguru.shoppinglist.service.validation;
 
-import com.javaguru.shoppinglist.dto.ProductDto;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
+import com.javaguru.shoppinglist.product.service.validation.ProductPriceValidationRule;
+import com.javaguru.shoppinglist.product.service.validation.ProductValidationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import java.math.BigDecimal;
-
-import static org.junit.Assert.*;
 
 public class ProductPriceValidationRuleTest {
 

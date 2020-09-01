@@ -1,6 +1,6 @@
 package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.domain.ProductCategory;
+import com.javaguru.shoppinglist.product.domain.ProductCategory;
 import org.springframework.stereotype.Component;
 
 @Component

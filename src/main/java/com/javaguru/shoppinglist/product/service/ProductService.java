@@ -1,11 +1,13 @@
-package com.javaguru.shoppinglist.service;
+package com.javaguru.shoppinglist.product.service;
 
-import com.javaguru.shoppinglist.domain.ProductEntity;
-import com.javaguru.shoppinglist.dto.ProductDto;
-import com.javaguru.shoppinglist.mapper.ProductMapper;
-import com.javaguru.shoppinglist.repository.ProductRepository;
-import com.javaguru.shoppinglist.service.validation.ProductValidationException;
-import com.javaguru.shoppinglist.service.validation.ProductValidationService;
+import com.javaguru.shoppinglist.product.domain.ProductEntity;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
+import com.javaguru.shoppinglist.product.mapper.ProductMapper;
+import com.javaguru.shoppinglist.product.repository.ProductRepository;
+import com.javaguru.shoppinglist.product.service.validation.ProductValidationService;
+import com.javaguru.shoppinglist.shoppingcart.domain.ShoppingCartEntity;
+import com.javaguru.shoppinglist.shoppingcart.repository.ShoppingCartRepository;
+import com.javaguru.shoppinglist.shoppingcart.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -80,9 +82,6 @@ public class ProductService implements ProductServiceable {
 
     @Override
     public void showAllProducts() {
-//        productRepository.findAllProducts().stream()
-//                .forEach(System.out::println);
         productRepository.findAllProducts().forEach((product) -> System.out.println(productMapper.toDto(product)));
     }
-
 }

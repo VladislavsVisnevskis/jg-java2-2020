@@ -1,8 +1,8 @@
 package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.domain.ProductCategory;
-import com.javaguru.shoppinglist.dto.ProductDto;
-import com.javaguru.shoppinglist.service.ProductService;
+import com.javaguru.shoppinglist.product.domain.ProductCategory;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
+import com.javaguru.shoppinglist.product.service.ProductService;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

@@ -1,6 +1,6 @@
 package com.javaguru.shoppinglist.console;
 
-import com.javaguru.shoppinglist.service.ProductServiceable;
+import com.javaguru.shoppinglist.product.service.ProductServiceable;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 

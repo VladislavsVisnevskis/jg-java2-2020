@@ -1,10 +1,9 @@
-package com.javaguru.shoppinglist.repository;
+package com.javaguru.shoppinglist.product.repository;
 
-import com.javaguru.shoppinglist.domain.ProductEntity;
+import com.javaguru.shoppinglist.product.domain.ProductEntity;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

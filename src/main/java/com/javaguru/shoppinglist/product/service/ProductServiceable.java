@@ -1,6 +1,6 @@
-package com.javaguru.shoppinglist.service;
+package com.javaguru.shoppinglist.product.service;
 
-import com.javaguru.shoppinglist.dto.ProductDto;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
 
 import java.math.BigDecimal;
 

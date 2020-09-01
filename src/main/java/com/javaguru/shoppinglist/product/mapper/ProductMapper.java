@@ -1,11 +1,10 @@
-package com.javaguru.shoppinglist.mapper;
+package com.javaguru.shoppinglist.product.mapper;
 
-import com.javaguru.shoppinglist.domain.ProductEntity;
-import com.javaguru.shoppinglist.dto.ProductDto;
+import com.javaguru.shoppinglist.product.domain.ProductEntity;
+import com.javaguru.shoppinglist.product.dto.ProductDto;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Component
 public class ProductMapper {

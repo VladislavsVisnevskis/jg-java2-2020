@@ -1,4 +1,4 @@
-package com.javaguru.shoppinglist.service.validation;
+package com.javaguru.shoppinglist.product.service.validation;
 
 public interface ProductValidationRule<Product> {
 
